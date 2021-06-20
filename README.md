@@ -1,2 +1,2 @@
-# React-Todo-App
-Todo app with Create-React-App
+# Simple-React-Projects
+Simple projects for learning react
