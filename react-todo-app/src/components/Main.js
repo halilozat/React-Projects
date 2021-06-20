@@ -30,18 +30,25 @@ export default class Main extends Component {
         this.setState({ tasks: tasks });
     };
 
+    toggleTask = (taskId) => {
+        const taskItem = tasks[taskId];
+        taskItem.isCompleted = !taskItem.isCompleted;
+        this.setState({ tasks: tasks });
+     };
+
     render() {
         return (
-            <div>
-                <h1>Todos</h1>
+            <div className="main">
+                <h1 className="todos">REACT TODO APP</h1>
                 <hr />
-                <div>
+                <div className="content">
                     <CreateTask createTask={this.createTask} />
                     <br />
                     <TaskList
                         tasks={this.state.tasks}
                         deleteTask={this.deleteTask}
                         editTask={this.editTask}
+                        toggleTask={this.toggleTask}
                     />
                 </div>
             </div>
