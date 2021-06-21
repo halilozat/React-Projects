@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 
-export default class CategoryList extends Component {
+
+class CategoryList extends Component {
     render() {
         return (
             <div>
@@ -9,3 +11,11 @@ export default class CategoryList extends Component {
         )
     }
 }
+
+function mapStateToProps(state){
+    return{
+        currentCategory: state.changeCategoryReducer
+    }
+}
+
+export default connect(mapStateToProps)(CategoryList)
