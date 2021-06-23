@@ -13,7 +13,7 @@ class CategoryList extends Component {
     render() {
         return (
             <div>
-                <h3>Categories {this.props.categories.length}</h3>
+                <h3>Categories ({this.props.categories.length})</h3>
                 <ListGroup>
                     {
                         this.props.categories.map(category => (
