@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { ListGroup, ListGroupItem, Badge, Button } from 'reactstrap';
+import { Button, Table } from 'reactstrap';
 import * as productActions from '../../redux/actions/productActions'
 
 
@@ -21,16 +21,34 @@ class ProductList extends Component {
                         Seçili Kategori : {this.props.currentCategory.categoryName}
                     </Button>
                 </h3>
-                <ListGroup>
-                    {
-                        this.props.products.map(product => (
-                            <ListGroupItem key={product.id}>
-                                {product.productName}
-                            </ListGroupItem>
-                        ))
-                    }
-
-                </ListGroup>
+                <Table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Product Name</th>
+              <th>Unit Price</th>
+              <th>Quantity Per Unit</th>
+              <th>Units In Stock</th>
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.products.map(product => (
+              <tr key={product.id}>
+                <th scope="row">{product.id}</th>
+                <td>{product.productName}</td>
+                <td>{product.unitPrice} $</td>
+                <td>{product.quantityPerUnit}</td>
+                <td>{product.unitsInStock}</td>
+                <td>
+                  <Button color="success">
+                    Add
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
             </div>
         )
     }
