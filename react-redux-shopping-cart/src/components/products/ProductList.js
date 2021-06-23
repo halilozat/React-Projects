@@ -3,25 +3,30 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Button, Table } from 'reactstrap';
 import * as productActions from '../../redux/actions/productActions'
-
+import * as cartActions from '../../redux/actions/cartActions'
+import alertify from 'alertifyjs'
 
 class ProductList extends Component {
-    componentDidMount() {
-        this.props.actions.getProducts()
-    }
+  componentDidMount() {
+    this.props.actions.getProducts()
+  }
+  addToCart = (product) => {
+    this.props.actions.addToCart({ quantity: 1, product })
+    alertify.success(product.productName + "sepete eklendi!")
+  }
 
-    render() {
-        return (
-            <div>
-                <h3>
-                    <Button color="warning" outline>
-                        Ürünler
-                    </Button>
-                    <Button color="danger" outline>
-                        Seçili Kategori : {this.props.currentCategory.categoryName}
-                    </Button>
-                </h3>
-                <Table>
+  render() {
+    return (
+      <div>
+        <h3>
+          <Button color="warning" outline>
+            Ürünler
+          </Button>
+          <Button color="danger" outline>
+            Seçili Kategori : {this.props.currentCategory.categoryName}
+          </Button>
+        </h3>
+        <Table>
           <thead>
             <tr>
               <th>#</th>
@@ -41,33 +46,37 @@ class ProductList extends Component {
                 <td>{product.quantityPerUnit}</td>
                 <td>{product.unitsInStock}</td>
                 <td>
-                  <Button color="success">
-                    Add
+                  <Button
+                    onClick={() => this.addToCart(product)}
+                    color="success"
+                  >
+                    Sepete Ekle
                   </Button>
                 </td>
               </tr>
             ))}
           </tbody>
         </Table>
-            </div>
-        )
-    }
+      </div>
+    )
+  }
 }
 
 function mapStateToProps(state) {
-    return {
-        currentCategory: state.changeCategoryReducer,
-        currentProduct: state.changeProductReducer,
-        products: state.productListReducer
-    }
+  return {
+    currentCategory: state.changeCategoryReducer,
+    currentProduct: state.changeProductReducer,
+    products: state.productListReducer
+  }
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        actions: {
-            getProducts: bindActionCreators(productActions.getProducts, dispatch)
-        }
+  return {
+    actions: {
+      getProducts: bindActionCreators(productActions.getProducts, dispatch),
+      addToCart: bindActionCreators(cartActions.addToCart, dispatch)
     }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductList)
