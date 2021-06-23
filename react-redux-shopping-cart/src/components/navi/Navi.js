@@ -8,6 +8,7 @@ import {
     NavLink
 } from 'reactstrap';
 import CartSummary from '../cart/CartSummary';
+import {Link} from 'react-router-dom'
 
 
 const Navi = (props) => {
@@ -24,10 +25,10 @@ const Navi = (props) => {
                     <Nav className="ml-auto" navbar>
                         <CartSummary />
                         <NavItem>
-                            <NavLink href="/components/">Components</NavLink>
+                            <NavLink> <Link to="/">Ana Sayfa</Link></NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                            <NavLink> <Link to="/cart">Sepet</Link></NavLink>
                         </NavItem>
                     </Nav>
                 </Collapse>

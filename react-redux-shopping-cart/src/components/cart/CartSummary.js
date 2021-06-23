@@ -11,8 +11,15 @@ import {
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import * as cartActions from '../../redux/actions/cartActions'
+import { Link } from 'react-router-dom';
+import alertify from 'alertifyjs'
 
 class CartSummary extends Component {
+
+    removeFromCart(product){
+        this.props.actions.removeFromCart(product)
+        alertify.error(product.productName + " sepetten silindi!")
+    }
 
     renderEmpty() {
         return (
@@ -32,8 +39,8 @@ class CartSummary extends Component {
                     {
                         this.props.cart.map(cartItem => (
                             <DropdownItem key={cartItem.product.id}>
-                                <span className="btn btn-sm"><Badge className="badge bg-danger btn btn-sm" onClick={() => this.props.actions.removeFromCart(cartItem.product)}>-</Badge></span>
-                                 {cartItem.product.productName}
+                                <span className="btn btn-sm"><Badge className="badge bg-danger btn btn-sm" onClick={() => this.removeFromCart(cartItem.product)}>-</Badge></span>
+                                {cartItem.product.productName}
                                 <span className="btn btn-sm mb-2">x{cartItem.quantity}</span>
                             </DropdownItem>
                         ))
@@ -42,22 +49,20 @@ class CartSummary extends Component {
 
                     <DropdownItem divider />
                     <DropdownItem>
-                        Sepete Git!
+                        <Link to={"/cart"}>
+                            Sepete Git!
+                        </Link>
                     </DropdownItem>
                 </DropdownMenu>
             </UncontrolledDropdown>
         )
     }
-
     render() {
         return (
             <div>
-
                 {
                     this.props.cart.length > 0 ? this.renderSummary() : this.renderEmpty()
                 }
-
-
             </div>
         )
     }
