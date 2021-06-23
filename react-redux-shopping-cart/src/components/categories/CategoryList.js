@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as categoryActions from '../../redux/actions/categoryActions'
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { ListGroup, ListGroupItem, Button, Badge } from 'reactstrap';
 
 
 class CategoryList extends Component {
@@ -10,20 +10,33 @@ class CategoryList extends Component {
         this.props.actions.getCategories()
     }
 
+    selectCategory = (category) => {
+        this.props.actions.changeCategory(category)
+    }
+
     render() {
         return (
             <div>
-                <h3>Categories ({this.props.categories.length})</h3>
+                <h3>
+                    <Button color="primary" outline>
+                        Kategoriler <Badge color="secondary"></Badge>
+                    </Button>
+                </h3>
                 <ListGroup>
                     {
                         this.props.categories.map(category => (
-                            <ListGroupItem key={category.id}>
+                            <ListGroupItem
+                                active={category.id === this.props.currentCategory.id}
+                                onClick={() => this.selectCategory(category)}
+                                key={category.id}>
                                 {category.categoryName}
                             </ListGroupItem>
                         ))
                     }
-
                 </ListGroup>
+                <hr />
+                <h5>Seçili Kategori: {this.props.currentCategory.categoryName}</h5>
+                <hr />
             </div>
         )
     }
@@ -32,14 +45,15 @@ class CategoryList extends Component {
 function mapStateToProps(state) {
     return {
         currentCategory: state.changeCategoryReducer,
-        categories: state.categoryListReducer
+        categories: state.categoryListReducer,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         actions: {
-            getCategories: bindActionCreators(categoryActions.getCategories, dispatch)
+            getCategories: bindActionCreators(categoryActions.getCategories, dispatch),
+            changeCategory: bindActionCreators(categoryActions.changeCategory, dispatch)
         }
     }
 }
