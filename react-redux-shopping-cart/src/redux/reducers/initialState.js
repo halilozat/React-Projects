@@ -6,4 +6,5 @@ export default{
     currentProduct:{},
     products:[],
     cart:[],
+    savedProduct: {},
 }
