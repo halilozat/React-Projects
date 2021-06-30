@@ -39,7 +39,7 @@ export default class Main extends Component {
     render() {
         return (
             <div className="main">
-                <h1 className="todos">REACT TODO APP</h1>
+               <h1 className="todos">REACT TODO APP</h1>
                 <hr />
                 <div className="content">
                     <CreateTask createTask={this.createTask} />

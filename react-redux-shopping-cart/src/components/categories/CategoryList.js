@@ -34,6 +34,7 @@ class CategoryList extends Component {
                                 {category.categoryName}
                             </ListGroupItem>
                         ))
+
                     }
                 </ListGroup>
                 <hr />
