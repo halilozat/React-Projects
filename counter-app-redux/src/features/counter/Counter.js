@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   decrement,
+  doubleDecrement,
   increment,
+  doubleIncrement,
   incrementByAmount,
+  decrementByAmount,
   incrementAsync,
   incrementIfOdd,
   selectCount,
+  incrementIfMultipleOfTen
 } from './counterSlice';
 import styles from './Counter.module.css';
 
@@ -16,10 +20,18 @@ export function Counter() {
   const [incrementAmount, setIncrementAmount] = useState('2');
 
   const incrementValue = Number(incrementAmount) || 0;
+  const decrementValue = Number(incrementAmount) || 0;
 
   return (
     <div>
       <div className={styles.row}>
+        <button
+          className={styles.button}
+          aria-label="Decrement value"
+          onClick={() => dispatch(doubleDecrement())}
+        >
+          -2
+        </button>
         <button
           className={styles.button}
           aria-label="Decrement value"
@@ -34,6 +46,13 @@ export function Counter() {
           onClick={() => dispatch(increment())}
         >
           +
+        </button>
+        <button
+          className={styles.button}
+          aria-label="Increment value"
+          onClick={() => dispatch(doubleIncrement())}
+        >
+          +2
         </button>
       </div>
       <div className={styles.row}>
@@ -50,6 +69,12 @@ export function Counter() {
           Add Amount
         </button>
         <button
+          className={styles.button}
+          onClick={() => dispatch(decrementByAmount(decrementValue))}
+        >
+          - (Add Amount)
+        </button>
+        <button
           className={styles.asyncButton}
           onClick={() => dispatch(incrementAsync(incrementValue))}
         >
@@ -60,6 +85,12 @@ export function Counter() {
           onClick={() => dispatch(incrementIfOdd(incrementValue))}
         >
           Add If Odd
+        </button>
+        <button
+          className={styles.button}
+          onClick={() => dispatch(incrementIfMultipleOfTen(incrementValue))}
+        >
+          Add If Multiple Of Ten
         </button>
       </div>
     </div>
