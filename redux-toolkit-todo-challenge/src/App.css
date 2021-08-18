@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  min-height: 20vh;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,18 +27,22 @@
   outline: 0;
 }
 
+
+.buttonInText {
+  display:inline-block;
+  position:relative;
+}
+
 .textArea{
   margin-top: 20px;
   border-radius: 20px;
   font-size: calc(10px + 2vmin);
+  display:block;
+
 }
 
 .textArea:focus{
   outline: 0;
-}
-
-.inputRadio {
-  margin-top: 20px;
 }
 
 .inputButton {
@@ -54,5 +58,67 @@
   cursor: pointer;
   border-radius: 30px;
   font-size: calc(10px + 2vmin);
+  position:absolute;
+  bottom:10px;
+  right:10px;
+}
+
+.greenBox {
+  height: 30vh;
+  width: 30vh;
+  display: inline-block;
+  border: 2px solid transparent;
+  margin: 10px;
+  padding: 0;
+  color: white;
+  font-weight: bold;
+  border-radius: 20px;
+  background-color: green;
+  border:solid 2px rgb(12, 11, 11);
+
+}
+
+.blueBox {
+  height: 30vh;
+  width: 30vh;
+  display: inline-block;
+  border: 2px solid transparent;
+  margin: 10px;
+  padding: 0;
+  color: white;
+  font-weight: bold;
+  border-radius: 20px;
+  background-color: blue;
+  border:solid 2px rgb(12, 11, 11);
+
+}
+
+.yellowBox {
+  height: 30vh;
+  width: 30vh;
+  display: inline-block;
+  border: 2px solid transparent;
+  margin: 10px;
+  padding: 0;
+  color: white;
+  font-weight: bold;
+  border-radius: 20px;
+  background-color: yellow;
+  border:solid 2px rgb(12, 11, 11);
+
+}
+
+.redBox {
+  height: 30vh;
+  width: 30vh;
+  display: inline-block;
+  border: 2px solid transparent;
+  margin: 10px;
+  padding: 0;
+  color: white;
+  font-weight: bold;
+  border-radius: 20px;
+  background-color: red;
+  border:solid 2px rgb(12, 11, 11);
 
 }
