@@ -80,52 +80,14 @@ body{
   border-radius: 20px;
   background-color: #2ecc71;
   border:solid 2px rgb(12, 11, 11);
-
 }
 
-.blueBox {
-  height: 30vh;
-  width: 30vh;
+.listBox {
   display: inline-block;
-  border: 2px solid transparent;
   margin: 10px;
-  padding: 0;
-  color: white;
+  text-align: left;
   font-weight: bold;
   border-radius: 20px;
-  background-color: #3498db;
-  border:solid 2px rgb(12, 11, 11);
-
-}
-
-.yellowBox {
-  height: 30vh;
-  width: 30vh;
-  display: inline-block;
-  border: 2px solid transparent;
-  margin: 10px;
-  padding: 0;
-  color: white;
-  font-weight: bold;
-  border-radius: 20px;
-  background-color: #f1c40f;
-  border:solid 2px rgb(12, 11, 11);
-
-}
-
-.redBox {
-  height: 30vh;
-  width: 30vh;
-  display: inline-block;
-  border: 2px solid transparent;
-  margin: 10px;
-  padding: 0;
-  color: white;
-  font-weight: bold;
-  border-radius: 20px;
-  background-color: #e74c3c;
-  border:solid 2px rgb(12, 11, 11);
-
 }
 
 .delete {

@@ -1,10 +1,15 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteNote } from '../redux/notes/notesSlice'
+import './noteList.scss'
 
 function NotesList() {
     const dispatch = useDispatch();
     const items = useSelector(state => state.notes.items)
+    const greenItems = items.filter((item) => item.color === "green")
+    const blueItems = items.filter((item) => item.color === "blue")
+    const yellowItems = items.filter((item) => item.color === "yellow")
+    const redItems = items.filter((item) => item.color === "red")
 
     const handleDelete = (id) => {
         if (window.confirm('Are you sure?')) {
@@ -14,67 +19,86 @@ function NotesList() {
 
     return (
         <div>
-            <div className="greenBox" style={{ backgroundColor: "white", color: "black" }}>
-                <ul style={{ listStyleType: "none !important" }}>
-                    {
+            <div className="listBox">
+                <div className="leaderboard">
+                    <div className="leaderboard__profiles">
+                        {items.map((item) => (
+                            <div key={item.id} className="leaderboard__profile" style={{ backgroundColor: item.color }}>
+                                <button
+                                    onClick={() => handleDelete(item.id)}
+                                    className="delete"
+                                >X</button>
+                                <span className="leaderboard__value">{item.title}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
 
-                        items.map((item) => (
-                            item.color === ""
-                                ? <div key={item.id}>
+
+            <div className="box" style={{ marginTop: "10px !important" }}>
+                <div className="listBox">
+                    <div className="leaderboard">
+                        <div className="leaderboard__profiles">
+                            {greenItems.map((item) => (
+                                <div key={item.id} className="leaderboard__profile" style={{ backgroundColor: item.color }}>
                                     <button
                                         onClick={() => handleDelete(item.id)}
                                         className="delete"
                                     >X</button>
-                                    {item.title}
+                                    <span className="leaderboard__value">{item.title}</span>
                                 </div>
-                                : null
-                        ))
-                    }
-                </ul>
-            </div>
-
-            <div className="box" style={{ marginTop: "10px !important" }}>
-
-                <div className="greenBox" style={{ backgroundColor: "#2ecc71" }}>
-                    {
-                        items.map((item) => (
-                            item.color === "green"
-                                ? <div key={item.id}><button onClick={() => handleDelete(item.id)} className="delete">X</button> {item.title}</div>
-                                : null
-                        ))
-
-                    }
+                            ))}
+                        </div>
+                    </div>
                 </div>
 
-                <div className="greenBox" style={{ backgroundColor: "#3498db" }}>
-                    {
-                        items.map((item) => (
-                            item.color === "blue"
-                                ? <div key={item.id}><button onClick={() => handleDelete(item.id)} className="delete">X</button> {item.title}</div>
-                                : null
-                        ))
-
-                    }
+                <div className="listBox">
+                    <div className="leaderboard">
+                        <div className="leaderboard__profiles">
+                            {blueItems.map((item) => (
+                                <div key={item.id} className="leaderboard__profile" style={{ backgroundColor: item.color }}>
+                                    <button
+                                        onClick={() => handleDelete(item.id)}
+                                        className="delete"
+                                    >X</button>
+                                    <span className="leaderboard__value">{item.title}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
-                <div className="greenBox" style={{ backgroundColor: "#f1c40f" }}>
-                    {
-                        items.map((item) => (
-                            item.color === "yellow"
-                                ? <div key={item.id}><button onClick={() => handleDelete(item.id)} className="delete">X</button> {item.title}</div>
-                                : null
-                        ))
 
-                    }
+                <div className="listBox">
+                    <div className="leaderboard">
+                        <div className="leaderboard__profiles">
+                            {yellowItems.map((item) => (
+                                <div key={item.id} className="leaderboard__profile" style={{ backgroundColor: item.color }}>
+                                    <button
+                                    onClick={() => handleDelete(item.id)}
+                                    className="delete"
+                                >X</button>
+                                    <span className="leaderboard__value">{item.title}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
-                <div className="greenBox" style={{ backgroundColor: "#e74c3c" }}>
-                    {
-                        items.map((item) => (
-                            item.color === "red"
-                                ? <div key={item.id}><button onClick={() => handleDelete(item.id)} className="delete">X</button> {item.title}</div>
-                                : null
-                        ))
 
-                    }
+                <div className="listBox">
+                    <div className="leaderboard">
+                        <div className="leaderboard__profiles">
+                            {redItems.map((item) => (
+                                <div key={item.id} className="leaderboard__profile" style={{ backgroundColor: item.color }}>
+                                    <button
+                                    onClick={() => handleDelete(item.id)}
+                                    className="delete"
+                                >X</button>
+                                    <span className="leaderboard__value">{item.title}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
