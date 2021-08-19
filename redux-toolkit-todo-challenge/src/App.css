@@ -73,6 +73,7 @@ body{
   display: inline-block;
   border: 2px solid transparent;
   margin: 10px;
+  text-align: left;
   padding: 0;
   color: white;
   font-weight: bold;
@@ -125,4 +126,11 @@ body{
   background-color: #e74c3c;
   border:solid 2px rgb(12, 11, 11);
 
+}
+
+.delete {
+  background-color: red;
+  color: white;
+  border-radius: 100%;
+  margin: 10px;
 }

@@ -1,55 +1,77 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteNote } from '../redux/notes/notesSlice'
 
 function NotesList() {
-
+    const dispatch = useDispatch();
     const items = useSelector(state => state.notes.items)
-    console.log(items)
+
+    const handleDelete = (id) => {
+        if (window.confirm('Are you sure?')) {
+            dispatch(deleteNote(id))
+        }
+    }
 
     return (
         <div>
             <div className="greenBox" style={{ backgroundColor: "white", color: "black" }}>
-                <ul style={{listStyleType: "none !important"}}>
+                <ul style={{ listStyleType: "none !important" }}>
                     {
-                        items.map((item) => (
-                            <div key={item.id}> {item.color === "" && item.title}</div>
-                        ))
 
+                        items.map((item) => (
+                            item.color === ""
+                                ? <div key={item.id}>
+                                    <button
+                                        onClick={() => handleDelete(item.id)}
+                                        className="delete"
+                                    >X</button>
+                                    {item.title}
+                                </div>
+                                : null
+                        ))
                     }
                 </ul>
             </div>
 
             <div className="box" style={{ marginTop: "10px !important" }}>
 
-                <div className="greenBox">
+                <div className="greenBox" style={{ backgroundColor: "#2ecc71" }}>
                     {
                         items.map((item) => (
-                            <div key={item.id}>{item.color === "green" && item.title}</div>
+                            item.color === "green"
+                                ? <div key={item.id}><button onClick={() => handleDelete(item.id)} className="delete">X</button> {item.title}</div>
+                                : null
                         ))
 
                     }
                 </div>
 
-                <div className="blueBox">
+                <div className="greenBox" style={{ backgroundColor: "#3498db" }}>
                     {
                         items.map((item) => (
-                            <div key={item.id}> {item.color === "blue" && item.title} </div>
+                            item.color === "blue"
+                                ? <div key={item.id}><button onClick={() => handleDelete(item.id)} className="delete">X</button> {item.title}</div>
+                                : null
                         ))
 
                     }
                 </div>
-                <div className="yellowBox">
+                <div className="greenBox" style={{ backgroundColor: "#f1c40f" }}>
                     {
                         items.map((item) => (
-                            <div key={item.id}> {item.color === "yellow" && item.title} </div>
+                            item.color === "yellow"
+                                ? <div key={item.id}><button onClick={() => handleDelete(item.id)} className="delete">X</button> {item.title}</div>
+                                : null
                         ))
 
                     }
                 </div>
-                <div className="redBox">
+                <div className="greenBox" style={{ backgroundColor: "#e74c3c" }}>
                     {
                         items.map((item) => (
-                            <div key={item.id}> {item.color === "red" && item.title}</div>
+                            item.color === "red"
+                                ? <div key={item.id}><button onClick={() => handleDelete(item.id)} className="delete">X</button> {item.title}</div>
+                                : null
                         ))
 
                     }
