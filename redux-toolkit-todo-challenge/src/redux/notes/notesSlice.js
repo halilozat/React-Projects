@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { nanoid } from '@reduxjs/toolkit'
 
 export const notesSlice = createSlice({
     name: 'notes',
@@ -12,8 +13,19 @@ export const notesSlice = createSlice({
         filterText: ""
     },
     reducers: {
-        addNote: (state, action) => {
-            state.items.push((action.payload))
+        addNote: {
+            reducer: (state, action) => {
+                state.items.push((action.payload))
+            },
+            prepare: ({title, color}) => {
+                return {
+                    payload: {
+                        id: nanoid(),
+                        title,
+                        color,
+                    }
+                }
+            },
         },
         deleteNote: (state, action) => {
             const id = action.payload
@@ -27,7 +39,7 @@ export const notesSlice = createSlice({
 })
 
 export const selectNotes = (state) => state.notes.items;
-export const selectColor = (item) => item.color
+export const selectColor = (item) => item.color;
 
 export const { addNote, deleteNote, setFilterText } = notesSlice.actions;
 export default notesSlice.reducer;

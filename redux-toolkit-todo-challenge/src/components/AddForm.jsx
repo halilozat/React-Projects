@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addNote } from '../redux/notes/notesSlice'
-import { nanoid } from '@reduxjs/toolkit'
 
 function AddForm() {
     const [title, setTitle] = useState('')
@@ -10,8 +9,10 @@ function AddForm() {
     const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
+        if (!title) return;
+
         e.preventDefault();
-        dispatch(addNote({ id: nanoid(), title, color }))
+        dispatch(addNote({ title, color }))
         setTitle('')
     }
 
@@ -19,7 +20,7 @@ function AddForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            
+
             <div className="buttonInText">
                 <textarea
                     id="react"
@@ -33,7 +34,7 @@ function AddForm() {
                 <button className="inputButton">Submit</button>
             </div>
 
-            <div className="custom-radios" onChange={(e) =>setColor(e.target.value)}>
+            <div className="custom-radios" onChange={(e) => setColor(e.target.value)}>
 
                 <input
                     type="radio"
@@ -89,7 +90,7 @@ function AddForm() {
                 </label>
 
             </div>
-           
+
             <br />
             <br />
 

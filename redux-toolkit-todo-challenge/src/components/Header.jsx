@@ -8,4 +8,4 @@ function Header() {
     )
 }
 
-export default React.memory(Header)
+export default Header

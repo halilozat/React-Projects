@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteNote, selectNotes, selectColor } from '../redux/notes/notesSlice'
+import { deleteNote, selectNotes } from '../redux/notes/notesSlice'
 import './noteList.scss'
 
 function NotesList() {
@@ -11,12 +11,11 @@ function NotesList() {
 
     const [show, setShow] = useState(false)
 
-    const greenItems = items.filter(selectColor === "green")
-    const blueItems = items.filter(selectColor === "blue")
-    const yellowItems = items.filter(selectColor === "yellow")
-    const redItems = items.filter(selectColor === "red")
+    const greenItems = items.filter((item) => item.color === "green")
+    const blueItems = items.filter((item) => item.color === "blue")
+    const yellowItems = items.filter((item) => item.color === "yellow")
+    const redItems = items.filter((item) => item.color === "red")
 
-    
     const handleDelete = (id) => {
         if (window.confirm('Are you sure?')) {
             dispatch(deleteNote(id))
