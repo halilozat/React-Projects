@@ -1,15 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setFilterText } from '../redux/notes/notesSlice'
 
 function Search() {
+
+    const [search, setSearch] = useState('')
+    const dispatch = useDispatch()
+
+    const handleChange = (e) => {
+        setSearch(e.target.value)
+        dispatch(setFilterText(search))
+    }
+
     return (
         <div>
             <input
                 type="text"
-                // style={{
-                //     width: "250px", height: "30px", borderRadius: "20%", fontSize: "calc(10px + 2vmin)"
-                // }}
                 className="search"
                 placeholder="   Search..."
+                onChange={handleChange}
             />
         </div>
     )

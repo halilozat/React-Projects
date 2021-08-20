@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteNote } from '../redux/notes/notesSlice'
+import { deleteNote, selectNotes, selectColor } from '../redux/notes/notesSlice'
 import './noteList.scss'
 
 function NotesList() {
     const dispatch = useDispatch();
-    const items = useSelector(state => state.notes.items)
+    const items = useSelector(selectNotes)
+    // const filterText = useSelector(state => state.notes.filterText)
+    // const filteredNotes = items.filter((item) => item.notes.includes(filterText))
 
-    const greenItems = items.filter((item) => item.color === "green")
-    const blueItems = items.filter((item) => item.color === "blue")
-    const yellowItems = items.filter((item) => item.color === "yellow")
-    const redItems = items.filter((item) => item.color === "red")
+    const [show, setShow] = useState(false)
 
+    const greenItems = items.filter(selectColor === "green")
+    const blueItems = items.filter(selectColor === "blue")
+    const yellowItems = items.filter(selectColor === "yellow")
+    const redItems = items.filter(selectColor === "red")
+
+    
     const handleDelete = (id) => {
         if (window.confirm('Are you sure?')) {
             dispatch(deleteNote(id))
@@ -43,12 +48,20 @@ function NotesList() {
 
             {coloredList(items)}
 
-            <div className="box" style={{ marginTop: "10px !important" }}>
-                {coloredList(greenItems)}
-                {coloredList(blueItems)}
-                {coloredList(yellowItems)}
-                {coloredList(redItems)}
-            </div>
+            <br />
+            <br />
+            <button className="showButton" onClick={() => setShow(!show)}><b>Show Filters</b></button>
+            <br />
+            <br />
+            {
+                show &&
+                <div className="box" style={{ marginTop: "10px !important" }}>
+                    {coloredList(greenItems)}
+                    {coloredList(blueItems)}
+                    {coloredList(yellowItems)}
+                    {coloredList(redItems)}
+                </div>
+            }
 
         </div>
     )

@@ -6,7 +6,7 @@ import { nanoid } from '@reduxjs/toolkit'
 function AddForm() {
     const [title, setTitle] = useState('')
     const [color, setColor] = useState('')
-    // console.log("color:" + color);
+
     const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
@@ -19,6 +19,7 @@ function AddForm() {
 
     return (
         <form onSubmit={handleSubmit}>
+            
             <div className="buttonInText">
                 <textarea
                     id="react"
@@ -29,12 +30,10 @@ function AddForm() {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
-
                 <button className="inputButton">Submit</button>
-
             </div>
 
-            <div className="custom-radios" onChange={(e) => setColor(e.target.value)}>
+            <div className="custom-radios" onChange={(e) =>setColor(e.target.value)}>
 
                 <input
                     type="radio"
@@ -90,6 +89,7 @@ function AddForm() {
                 </label>
 
             </div>
+           
             <br />
             <br />
 

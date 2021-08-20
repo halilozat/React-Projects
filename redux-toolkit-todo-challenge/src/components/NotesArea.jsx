@@ -7,7 +7,6 @@ function NotesArea() {
     return (
         <>
             <AddForm />
-
             <NotesList />
         </>
     )
